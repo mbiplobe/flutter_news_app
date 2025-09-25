@@ -14,9 +14,9 @@ class NewsDetailPage extends StatelessWidget {
       children: <Widget>[
         Hero(
           tag: 'headerImage',
-          child: article.urlToImage == null || article.urlToImage.isEmpty
+          child: article.urlToImage == null || article.urlToImage!.isEmpty
               ? Container()
-              : customImage(article.urlToImage),
+              : customImage(article.urlToImage??''),
         ),
         Container(
           padding: EdgeInsets.only(left: 0, right: 10, bottom: 20),
@@ -29,7 +29,7 @@ class NewsDetailPage extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.keyboard_backspace,
-                  color: Theme.of(context).backgroundColor,
+                  color: Theme.of(context).colorScheme.surface,
                 ),
               ),
               Expanded(child: SizedBox()),
@@ -37,14 +37,14 @@ class NewsDetailPage extends StatelessWidget {
                 onPressed: () {},
                 icon: Icon(
                   Icons.favorite_border,
-                  color: Theme.of(context).backgroundColor,
+                  color: Theme.of(context).colorScheme.surface,
                 ),
               ),
               IconButton(
                 onPressed: () {},
                 icon: Icon(
                   Icons.share,
-                  color: Theme.of(context).backgroundColor,
+                  color: Theme.of(context).colorScheme.surface,
                 ),
               )
             ],
@@ -69,7 +69,7 @@ class NewsDetailPage extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Text(article.title, style: AppTheme.h1Style),
+              Text(article.title ?? '', style: AppTheme.h1Style),
               SizedBox(
                 height: 10,
               ),
@@ -97,7 +97,7 @@ class NewsDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(child: BlocBuilder<DetailBloc, DetailState>(
           builder: (context, state) {
             if (state == null) {

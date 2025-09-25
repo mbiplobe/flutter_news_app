@@ -6,11 +6,10 @@ class NewsApiProvider {
   Client client = Client();
   final _apiKey = Constant.newsApiKey;
 
-  Future<List<Article>> fetchNewsList({String category = ''}) async {
-    var url =
-        "${Constant.baseUrl}${Constant.topHeadLine}?country=in&apiKey=$_apiKey&category=$category";
+  Future<List<Article>?> fetchNewsList({String category = ''}) async {
+    var url ="${Constant.baseUrl}${Constant.topHeadLine}?country=in&apiKey=$_apiKey&category=$category";
     // print("entered Url : $url");
-    final response = await client.get(url);
+    final response = await client.get(Uri.parse(url));
     // print(response.body.toString());
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON

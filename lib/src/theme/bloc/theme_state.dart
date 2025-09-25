@@ -8,7 +8,7 @@ class ThemeState extends Equatable {
 class SelectedTheme extends ThemeState {
   final ThemeType themeType;
 
-  SelectedTheme({this.themeType});
+  SelectedTheme({required this.themeType});
 
   @override
   List<Object> get props => [themeType];

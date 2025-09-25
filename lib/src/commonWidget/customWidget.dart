@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 Widget customText(String msg,
-    {TextStyle style,
+    {required TextStyle style,
     TextAlign textAlign = TextAlign.justify,
     overflow = TextOverflow.clip,
-    BuildContext context}) {
+    required BuildContext context}) {
   if (msg == null) {
     return SizedBox(
       height: 0,
@@ -13,10 +13,9 @@ Widget customText(String msg,
     );
   } else {
     if (context != null && style != null) {
-      var fontSize =
-          style.fontSize ?? Theme.of(context).textTheme.bodyText1.fontSize;
-      style = style.copyWith(
-          fontSize: fontSize - (fullWidth(context) <= 375 ? 2 : 0));
+      var fontSize = style.fontSize ?? Theme.of(context).textTheme.bodyLarge;
+      // style = style.copyWith(
+      //     //fontSize: fontSize! - (fullWidth(context) <= 375 ? 2 : 0));
     }
     return Text(
       msg,
@@ -26,6 +25,8 @@ Widget customText(String msg,
     );
   }
 }
+
+// Removed faulty extension that interferes with subtraction operator
 
 double fullWidth(BuildContext context) {
   return MediaQuery.of(context).size.width;
@@ -48,8 +49,8 @@ Image customImage(String path, {BoxFit fit = BoxFit.contain}) {
     image: customAdvanceNetworkImage(path),
     fit: fit,
     errorBuilder:
-        (BuildContext context, Object exception, StackTrace stackTrace) {
-      return Container();
+        (BuildContext context, Object exception, StackTrace? stackTrace) {
+      return const SizedBox.shrink();
     },
   );
 }
@@ -70,7 +71,6 @@ String getTypeImage(String type) {
   switch (type) {
     case 'Fighting':
       return 'assets/images/types/Fight.png';
-      break;
     default:
       return 'assets/images/types/$type.png';
   }

@@ -8,11 +8,11 @@ import 'package:intl/intl.dart';
 class NewsApiResonse {
   String status;
   int totalResults;
-  List<Article> articles;
+  List<Article>? articles;
 
   NewsApiResonse({
-    this.status,
-    this.totalResults,
+    required this.status,
+    required this.totalResults,
     this.articles,
   });
 
@@ -36,22 +36,22 @@ class NewsApiResonse {
         "totalResults": totalResults == null ? null : totalResults,
         "articles": articles == null
             ? null
-            : List<dynamic>.from(articles.map((x) => x.toJson())),
+            : List<dynamic>.from(articles!.map((x) => x.toJson())),
       };
 }
 
 class Article {
   Source source;
-  String author;
-  String title;
-  String description;
-  String url;
-  String urlToImage;
-  DateTime publishedAt;
-  String content;
+  String? author;
+  String? title;
+  String? description;
+  String? url;
+  String? urlToImage;
+  DateTime? publishedAt;
+  String? content;
 
   Article({
-    this.source,
+    required this.source,
     this.author,
     this.title,
     this.description,
@@ -66,7 +66,9 @@ class Article {
   String toRawJson() => json.encode(toJson());
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
-        source: json["source"] == null ? null : Source.fromJson(json["source"]),
+        source: json["source"] == null
+            ? Source(id: '', name: '')
+            : Source.fromJson(json["source"]),
         author: json["author"] == null ? null : json["author"],
         title: json["title"] == null ? null : json["title"],
         description: json["description"] == null ? null : json["description"],
@@ -86,18 +88,18 @@ class Article {
         "url": url == null ? null : url,
         "urlToImage": urlToImage == null ? null : urlToImage,
         "publishedAt":
-            publishedAt == null ? null : publishedAt.toIso8601String(),
+            publishedAt == null ? null : publishedAt?.toIso8601String(),
         "content": content == null ? null : content,
       };
   String getTime() {
     var formatter = new DateFormat('dd MMMM yyyy h:m');
-    String formatted = formatter.format(publishedAt);
+    String formatted = formatter.format(publishedAt!);
     return formatted;
   }
 
   String getDateOnly() {
     var formatter = new DateFormat('dd MMMM yyyy');
-    String formatted = formatter.format(publishedAt);
+    String formatted = formatter.format(publishedAt!);
     return formatted;
   }
 }
@@ -107,8 +109,8 @@ class Source {
   String name;
 
   Source({
-    this.id,
-    this.name,
+    required this.id,
+    required this.name,
   });
 
   factory Source.fromRawJson(String str) => Source.fromJson(json.decode(str));

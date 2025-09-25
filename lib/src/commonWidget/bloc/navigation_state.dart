@@ -10,7 +10,7 @@ abstract class NavigationState extends Equatable {
 class Opened extends NavigationState {
   final int pageIndex;
 
-  Opened({this.pageIndex});
+  Opened({required this.pageIndex});
 
   @override
   List<Object> get props => [pageIndex];

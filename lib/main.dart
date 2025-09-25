@@ -18,7 +18,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ThemeData apptheme;
+    ThemeData apptheme = AppTheme.lightTheme;
     return MultiBlocProvider(
       providers: [
         BlocProvider<NewsBloc>(
@@ -35,6 +35,8 @@ class MyApp extends StatelessWidget {
             apptheme = state.themeType != ThemeType.Light
                 ? AppTheme.lightTheme
                 : AppTheme.darkTheme;
+          } else {
+            apptheme = AppTheme.lightTheme;
           }
           return Builder(
             builder: (context) {

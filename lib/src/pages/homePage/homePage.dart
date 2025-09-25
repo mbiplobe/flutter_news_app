@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
                   tag: 'headerImage',
                   child: article.urlToImage == null
                       ? Container()
-                      : customImage(article.urlToImage),
+                      : customImage(article.urlToImage??''),
                 ),
                 Container(
                   padding:
@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(article.title,
+                      Text(article.title??'',
                           style: AppTheme.h4Style.copyWith(
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).colorScheme.onSurface)),
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
   Widget _body(
     BuildContext context,
     List<Article> list, {
-    String type,
+    required String type,
   }) {
     return CustomScrollView(
       slivers: <Widget>[
@@ -71,9 +71,9 @@ class HomePage extends StatelessWidget {
           title: Text(
             '${type.toUpperCase()} NEWS',
             style: AppTheme.h2Style
-                .copyWith(color: Theme.of(context).colorScheme.primaryVariant),
+                .copyWith(color: Theme.of(context).colorScheme.surface),
           ),
-          backgroundColor: Theme.of(context).bottomAppBarColor,
+          backgroundColor: Theme.of(context).bottomAppBarTheme.color,
           pinned: true,
         ),
         SliverToBoxAdapter(
@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
                 (context, index) => NewsCard(
                       artical: list[index],
-                      type: type.toUpperCase(),
+                      type: type.toUpperCase(), key: null,
                     ),
                 childCount: list.length))
       ],
@@ -93,10 +93,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        systemNavigationBarColor: Theme.of(context).backgroundColor,
-        statusBarColor: Theme.of(context).backgroundColor));
+        systemNavigationBarColor: Theme.of(context).colorScheme.surface,
+        statusBarColor: Theme.of(context).colorScheme.surface,));
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: BlocBuilder<NewsBloc, NewsState>(
           builder: (context, state) {

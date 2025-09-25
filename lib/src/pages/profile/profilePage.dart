@@ -5,7 +5,7 @@ import 'package:flutter_news_app/src/theme/bloc/bloc.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key key}) : super(key: key);
+  const ProfilePage({required Key key}) : super(key: key);
 
   Widget _headerWidget(BuildContext context) {
     return Container(
@@ -76,7 +76,7 @@ class ProfilePage extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       color: isEnable
           ? Theme.of(context).primaryColor.withAlpha(100)
-          : Theme.of(context).backgroundColor,
+          : Theme.of(context).colorScheme.surface,
       child: Row(
         children: <Widget>[
           Icon(
@@ -114,13 +114,13 @@ class ProfilePage extends StatelessWidget {
         children: <Widget>[
           Icon(
             icon1,
-            color: Theme.of(context).errorColor,
+            color: Theme.of(context).colorScheme.error.withAlpha(200),
           ),
           SizedBox(width: 10),
           Text(text,
               style: AppTheme.h3Style.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).errorColor)),
+                  color: Theme.of(context).colorScheme.error.withAlpha(200),)),
           Expanded(child: SizedBox()),
         ],
       ),
@@ -130,7 +130,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, state) {
             bool val = false;

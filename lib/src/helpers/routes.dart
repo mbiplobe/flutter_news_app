@@ -8,11 +8,11 @@ import 'package:flutter_news_app/src/pages/profile/profilePage.dart';
 class Routes{
   static Map<String,WidgetBuilder> getRoute(){
     return  <String, WidgetBuilder>{
-          '/': (_) => NewsApp(),
+          '/': (_) => NewsApp(key: Key('News App'),),
           '/home': (_) => HomePage(),
           '/detail': (_) => NewsDetailPage(),
           '/category': (_) => CategoryPage(),
-          '/profile': (_) => ProfilePage(),
+          '/profile': (_) => ProfilePage(key: Key('Profile'),),
         };
   }
 }

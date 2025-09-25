@@ -24,7 +24,7 @@ class VideoNewsPage extends StatelessWidget {
                   children: <Widget>[
                     article.urlToImage == null
                         ? Container()
-                        : customImage(article.urlToImage, fit: BoxFit.fitWidth),
+                        : customImage(article.urlToImage??'', fit: BoxFit.fitWidth),
                     Container(
                       padding: EdgeInsets.only(left: 20, right: 10, bottom: 20),
                       alignment: Alignment.bottomCenter,
@@ -32,7 +32,7 @@ class VideoNewsPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          Text(article.title,
+                          Text(article.title??'',
                               style: AppTheme.h2Style.copyWith(
                                   color:
                                       Theme.of(context).colorScheme.onSurface)),
@@ -62,7 +62,7 @@ class VideoNewsPage extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Theme.of(context).bottomAppBarColor),
+                    color: Theme.of(context).bottomAppBarTheme.color),
                 child: Icon(
                   Icons.play_arrow,
                   color: Theme.of(context).disabledColor,
@@ -73,7 +73,7 @@ class VideoNewsPage extends StatelessWidget {
   Widget _body(
     BuildContext context,
     List<Article> list, {
-    String type,
+    String type = 'general',
   }) {
     return CustomScrollView(
       slivers: <Widget>[
@@ -84,7 +84,7 @@ class VideoNewsPage extends StatelessWidget {
             style: AppTheme.h2Style
                 .copyWith(color: Theme.of(context).primaryColor),
           ),
-          backgroundColor: Theme.of(context).bottomAppBarColor,
+          backgroundColor: Theme.of(context).bottomAppBarTheme.color,
           pinned: true,
         ),
         SliverToBoxAdapter(
@@ -101,7 +101,7 @@ class VideoNewsPage extends StatelessWidget {
                 (context, index) => NewsCard(
                       artical: list[index],
                       isVideoNews: true,
-                      type: type.toUpperCase(),
+                      type: type.toUpperCase(), key: null,
                     ),
                 childCount: list.length)),
       ],
@@ -111,7 +111,7 @@ class VideoNewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).cardTheme.color,
         body: SafeArea(
             child: BlocBuilder<NewsBloc, NewsState>(builder: (context, state) {
           if (state == null) {

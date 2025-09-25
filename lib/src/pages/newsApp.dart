@@ -7,7 +7,7 @@ import 'homePage/homePage.dart';
 import 'profile/profilePage.dart';
 
 class NewsApp extends StatefulWidget {
-  NewsApp({Key key}) : super(key: key);
+  NewsApp({required Key key}) : super(key: key);
 
   @override
   _NewsAppState createState() => _NewsAppState();
@@ -18,16 +18,16 @@ class _NewsAppState extends State<NewsApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBarWidget(controller: _controller),
+      bottomNavigationBar: BottomNavigationBarWidget(controller: _controller, key: Key('Bottom widget'),),
       body: PageView(
         controller: _controller,
         children: <Widget>[
           HomePage(),
           VideoNewsPage(),
           CategoryPage(
-            controller: _controller,
+            controller: _controller, key: null,
           ),
-          ProfilePage(),
+          ProfilePage(key: Key('profilePage')),
         ],
       ),
     );

@@ -13,7 +13,7 @@ class NavigationEvent extends Equatable{
 class Navigate extends NavigationEvent {
   final int pageIndex;
 
-  Navigate({this.pageIndex});
+  Navigate({required this.pageIndex});
 
   @override
   List<Object> get props => [pageIndex];

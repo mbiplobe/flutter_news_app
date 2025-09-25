@@ -4,7 +4,7 @@ import 'package:flutter_news_app/src/commonWidget/bloc/bloc.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   final PageController controller;
-  const BottomNavigationBarWidget({Key key, this.controller}) : super(key: key);
+  const BottomNavigationBarWidget({required Key key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
       builder: (context, state) {
         if (state is Opened) {
           return BottomNavigationBar(
-            backgroundColor: Theme.of(context).bottomAppBarColor,
+            backgroundColor: Theme.of(context).bottomAppBarTheme.color,
             showUnselectedLabels: false,
             showSelectedLabels: false,
             currentIndex: state.pageIndex,

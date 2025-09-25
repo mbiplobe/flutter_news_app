@@ -6,8 +6,9 @@ import 'package:flutter_news_app/src/pages/homePage/bloc/bloc.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
 
 class CategoryPage extends StatefulWidget {
-  final PageController controller;
-  CategoryPage({Key key, this.controller}) : super(key: key);
+  final PageController? controller;
+  const CategoryPage({Key? key, this.controller}) : super(key: key);
+
 
   @override
   _CategoryPageState createState() => _CategoryPageState();
@@ -20,7 +21,7 @@ class _CategoryPageState extends State<CategoryPage> {
           BlocProvider.of<NewsBloc>(context).add(Fetch(type: type));
           BlocProvider.of<NavigationBloc>(context).add(Navigate(pageIndex: 0));
 
-          widget.controller.animateTo(0,
+          widget.controller!.animateTo(0,
               duration: Duration(milliseconds: 300), curve: Curves.linear);
         },
         child: Stack(
@@ -42,11 +43,11 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: AppBar(
           elevation: 0,
           centerTitle: false,
-          backgroundColor: Theme.of(context).bottomAppBarColor,
+          backgroundColor: Theme.of(context).bottomAppBarTheme.color,
           title: Text(
             'News Category',
             style: AppTheme.h2Style

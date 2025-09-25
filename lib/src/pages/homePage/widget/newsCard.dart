@@ -10,7 +10,7 @@ class NewsCard extends StatelessWidget {
   final bool isVideoNews;
   final String type;
   const NewsCard(
-      {Key key, this.artical, this.isVideoNews = false, this.type = ''})
+      {required key,required this.artical, this.isVideoNews = false, this.type = ''})
       : super(key: key);
   Widget _playWidget(BuildContext context) {
     return SizedBox(
@@ -22,7 +22,7 @@ class NewsCard extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Theme.of(context).bottomAppBarColor),
+              color: Theme.of(context).bottomAppBarTheme.color),
           child: Icon(
             Icons.play_arrow,
             color: Theme.of(context).disabledColor,
@@ -58,9 +58,9 @@ class NewsCard extends StatelessWidget {
                     Container(
                         color: Theme.of(context).primaryColor,
                         child: artical.urlToImage == null ||
-                                artical.urlToImage.isEmpty
+                                artical.urlToImage!.isEmpty
                             ? Container()
-                            : customImage(artical.urlToImage,
+                            : customImage(artical.urlToImage??'',
                                 fit: BoxFit.cover)),
                     isVideoNews ? _playWidget(context) : Container()
                   ],
@@ -76,8 +76,8 @@ class NewsCard extends StatelessWidget {
                 Container(
                   height: 52,
                   child: Text(
-                    artical.title,
-                    style: Theme.of(context).textTheme.bodyText1,
+                    artical.title??'',
+                    style: Theme.of(context).textTheme.bodyLarge,
                     overflow: TextOverflow.fade,
                   ),
                 ),
