@@ -1,57 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_news_app/src/bloc/simple_bloc_delegate.dart';
-import 'package:flutter_news_app/src/commonWidget/bloc/bloc.dart';
 import 'package:flutter_news_app/src/core/config/routes.dart';
-import 'package:flutter_news_app/src/theme/bloc/theme_bloc.dart';
-import 'package:flutter_news_app/src/theme/bloc/theme_state.dart';
+import 'package:flutter_news_app/src/core/constants_utils.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
-import 'src/pages/homePage/bloc/bloc.dart';
-import 'src/pages/newsDetail/bloc/bloc.dart';
-import 'src/resources/repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-Future<void> main() async {
-  //BlocObserver observer = SimpleBlocObserver();
+void main() async {
    await dotenv.load(fileName: ".env");
-  runApp(MyApp());
+  runApp(
+    ProviderScope(   
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ThemeData apptheme = AppTheme.lightTheme;
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<NewsBloc>(
-          create: (context) =>
-              NewsBloc(repository: Repository())..add(Fetch(type: 'General')),
-        ),
-        BlocProvider<DetailBloc>(create: (context) => DetailBloc()),
-        BlocProvider<NavigationBloc>(create: (context) => NavigationBloc()),
-        BlocProvider<ThemeBloc>(create: (context) => ThemeBloc()),
-      ],
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (context, state) {
-          if (state is SelectedTheme) {
-            apptheme = state.themeType != ThemeType.Light
-                ? AppTheme.lightTheme
-                : AppTheme.darkTheme;
-          } else {
-            apptheme = AppTheme.lightTheme;
-          }
-          return Builder(
-            builder: (context) {
-              return MaterialApp.router(
-                title: 'Flutter Demo',
-                theme: apptheme,
-                debugShowCheckedModeBanner: false,
-                routerConfig: router,
-              );
-            },
-          );
-        },
-      ),
+    return MaterialApp.router(
+      title: AppConfigurations.AppTitle,
+      theme: AppTheme.lightTheme,
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

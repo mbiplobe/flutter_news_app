@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
 import 'package:flutter_news_app/src/models/newsResponseModel.dart';
-import 'package:flutter_news_app/src/pages/newsDetail/bloc/bloc.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
 
 class NewsCard extends StatelessWidget {
@@ -37,9 +35,9 @@ class NewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        BlocProvider.of<DetailBloc>(context)
-            .add(SelectNewsForDetail(article: artical));
-        Navigator.pushNamed(context, '/detail');
+        // BlocProvider.of<DetailBloc>(context)
+        //     .add(SelectNewsForDetail(article: artical));
+        // Navigator.pushNamed(context, '/detail');
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),

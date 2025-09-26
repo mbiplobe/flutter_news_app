@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_news_app/src/pages/category/categoryPage.dart';
-import 'package:flutter_news_app/src/pages/homePage/homePage.dart';
-import 'package:flutter_news_app/src/pages/newsApp.dart';
-import 'package:flutter_news_app/src/pages/newsDetail/newsDetailPage.dart';
-import 'package:flutter_news_app/src/pages/profile/profilePage.dart';
+import 'package:flutter_news_app/src/views/category/categoryPage.dart';
+import 'package:flutter_news_app/src/views/homePage/homePage.dart';
+import 'package:flutter_news_app/src/views/newsApp.dart';
+import 'package:flutter_news_app/src/views/newsDetail/newsDetailPage.dart';
+import 'package:flutter_news_app/src/views/profile/profilePage.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(

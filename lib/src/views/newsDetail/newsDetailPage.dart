@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
 import 'package:flutter_news_app/src/models/newsResponseModel.dart';
-import 'package:flutter_news_app/src/pages/homePage/bloc/bloc.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
-
-import 'bloc/bloc.dart';
 
 class NewsDetailPage extends StatelessWidget {
   Widget _headerNews(BuildContext context, Article article) {
@@ -98,27 +94,32 @@ class NewsDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        body: SafeArea(child: BlocBuilder<DetailBloc, DetailState>(
-          builder: (context, state) {
-            if (state == null) {
-              return Center(child: Text('Null bloc'));
-            }
-            if (state is Failure) {
-              return Center(child: Text('Something went wrong'));
-            }
-            if (state is LoadedArticle) {
-              if (state.selectedArticle == null) {
-                return Text('No content avilable');
-              } else {
-                return _body(
-                  context,
-                  state.selectedArticle,
-                );
-              }
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
-        )));
+        body: SafeArea(
+          child: Text('Need to incorporate riverpod here'),
+          
+        //   BlocBuilder<DetailBloc, DetailState>(
+        //   builder: (context, state) {
+        //     if (state == null) {
+        //       return Center(child: Text('Null bloc'));
+        //     }
+        //     if (state is Failure) {
+        //       return Center(child: Text('Something went wrong'));
+        //     }
+        //     if (state is LoadedArticle) {
+        //       if (state.selectedArticle == null) {
+        //         return Text('No content avilable');
+        //       } else {
+        //         return _body(
+        //           context,
+        //           state.selectedArticle,
+        //         );
+        //       }
+        //     } else {
+        //       return Center(child: CircularProgressIndicator());
+        //     }
+        //   },
+        // )
+        
+        ));
   }
 }

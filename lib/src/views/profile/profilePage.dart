@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
-import 'package:flutter_news_app/src/theme/bloc/bloc.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -94,8 +92,8 @@ class ProfilePage extends StatelessWidget {
                   inactiveTrackColor: Theme.of(context).disabledColor,
                   onChanged: (value) {
                     if (index == 1) {
-                      BlocProvider.of<ThemeBloc>(context)
-                          .add(isEnable ? DarkMode() : LightMode());
+                      // BlocProvider.of<ThemeBloc>(context)
+                      //     .add(isEnable ? DarkMode() : LightMode());
                     }
                   },
                   value: isEnable,
@@ -130,47 +128,51 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        body: BlocBuilder<ThemeBloc, ThemeState>(
-          builder: (context, state) {
-            bool val = false;
-            if (state is SelectedTheme) {
-              val = state.themeType == ThemeType.Light ? true : false;
-            }
-            return SafeArea(
-              child: CustomScrollView(
-                slivers: <Widget>[
-                  SliverToBoxAdapter(
-                    child: _headerWidget(context),
-                  ),
-                  SliverToBoxAdapter(
-                      child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        _settingRow(
-                            context, Icons.lightbulb_outline, 'Night', val,
-                            index: 1),
-                        _settingRow(context, Icons.notifications,
-                            'Notification', false),
-                        // SizedBox(height: 10),
-                        _settingRow(
-                            context, Icons.share, 'Social Media', false),
-                        SizedBox(height: 5),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          height: 0,
-                        ),
-                        SizedBox(height: 5),
-                        _logout(context, Icons.exit_to_app, 'Logout'),
-                      ],
-                    ),
-                  ))
-                ],
-              ),
-            );
-          },
-        ));
+        body: Container(
+          child: Text('Revoport need to incorporate here'),
+        )
+        // // BlocBuilder<ThemeBloc, ThemeState>(
+        //   builder: (context, state) {
+        //     bool val = false;
+        //     if (state is SelectedTheme) {
+        //       val = state.themeType == ThemeType.Light ? true : false;
+        //     }
+        //     return SafeArea(
+        //       child: CustomScrollView(
+        //         slivers: <Widget>[
+        //           SliverToBoxAdapter(
+        //             child: _headerWidget(context),
+        //           ),
+        //           SliverToBoxAdapter(
+        //               child: Padding(
+        //             padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+        //             child: Column(
+        //               crossAxisAlignment: CrossAxisAlignment.start,
+        //               children: <Widget>[
+        //                 _settingRow(
+        //                     context, Icons.lightbulb_outline, 'Night', val,
+        //                     index: 1),
+        //                 _settingRow(context, Icons.notifications,
+        //                     'Notification', false),
+        //                 // SizedBox(height: 10),
+        //                 _settingRow(
+        //                     context, Icons.share, 'Social Media', false),
+        //                 SizedBox(height: 5),
+        //                 Divider(
+        //                   indent: 20,
+        //                   endIndent: 20,
+        //                   height: 0,
+        //                 ),
+        //                 SizedBox(height: 5),
+        //                 _logout(context, Icons.exit_to_app, 'Logout'),
+        //               ],
+        //             ),
+        //           ))
+        //         ],
+        //       ),
+        //     );
+        //   },
+        );
+        
   }
 }

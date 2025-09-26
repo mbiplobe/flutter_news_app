@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
 import 'package:flutter_news_app/src/models/newsResponseModel.dart';
-import 'package:flutter_news_app/src/pages/newsDetail/bloc/bloc.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
-import 'bloc/bloc.dart';
+import 'package:flutter_news_app/src/view_models/new_view_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'widget/newsCard.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   Widget _headerNews(Article article) {
     return Builder(
       builder: (context) {
         return InkWell(
             onTap: () {
-              final detailBloc = BlocProvider.of<DetailBloc>(context);
-              detailBloc.add(SelectNewsForDetail(article: article));
-              Navigator.pushNamed(context, '/detail');
+              // final detailBloc = BlocProvider.of<DetailBloc>(context);
+              // detailBloc.add(SelectNewsForDetail(article: article));
+              // Navigator.pushNamed(context, '/detail');
             },
             child: Stack(
               alignment: Alignment.bottomCenter,
@@ -91,32 +90,46 @@ class HomePage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         systemNavigationBarColor: Theme.of(context).colorScheme.surface,
-        statusBarColor: Theme.of(context).colorScheme.surface,));
+        statusBarColor: Theme.of(context).colorScheme.surface,)); // need to know in future
+    
+     final newsViewModel = ref.watch(newViewModelProvider);
+    
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
-        child: BlocBuilder<NewsBloc, NewsState>(
-          builder: (context, state) {
-            if (state == null) {
-              return Center(child: Text('Null block'));
-            }
-            if (state is Failure) {
-              return Center(child: Text('Something went wrong'));
-            }
-            if (state is Loaded) {
-              if (state.items == null || state.items.isEmpty) {
-                return Text('No content avilable');
-              } else {
-                return _body(context, state.items, type: state.type);
-              }
+        child: newsViewModel.when(
+          data: (data) {
+            if (data == null || data.isEmpty) {
+              return Text('No content avilable');
             } else {
-              return Center(child: CircularProgressIndicator());
+              return _body(context, data, type: 'general');
             }
           },
+          error: (error, stack) => Center(child: Text('Something went wrong')),
+          loading: () => Center(child: CircularProgressIndicator()),
         ),
+        // child: BlocBuilder<NewsBloc, NewsState>(
+        //   builder: (context, state) {
+        //     if (state == null) {
+        //       return Center(child: Text('Null block'));
+        //     }
+        //     if (state is Failure) {
+        //       return Center(child: Text('Something went wrong'));
+        //     }
+        //     if (state is Loaded) {
+        //       if (state.items == null || state.items.isEmpty) {
+        //         return Text('No content avilable');
+        //       } else {
+        //         return _body(context, state.items, type: state.type);
+        //       }
+        //     } else {
+        //       return Center(child: CircularProgressIndicator());
+        //     }
+        //   },
+        // ),
       ),
     );
   }

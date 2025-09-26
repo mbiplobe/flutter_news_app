@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
 import 'package:flutter_news_app/src/models/newsResponseModel.dart';
-import 'package:flutter_news_app/src/pages/homePage/bloc/bloc.dart';
-import 'package:flutter_news_app/src/pages/homePage/widget/newsCard.dart';
-import 'package:flutter_news_app/src/pages/newsDetail/bloc/bloc.dart';
+import 'package:flutter_news_app/src/views/homePage/widget/newsCard.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
 
 class VideoNewsPage extends StatelessWidget {
   Widget _headerNews(BuildContext context, Article article) {
     return InkWell(
         onTap: () {
-          BlocProvider.of<DetailBloc>(context)
-              .add(SelectNewsForDetail(article: article));
-          Navigator.pushNamed(context, '/detail');
+          // BlocProvider.of<DetailBloc>(context)
+          //     .add(SelectNewsForDetail(article: article));
+          // Navigator.pushNamed(context, '/detail');
         },
         child: Container(
             width: MediaQuery.of(context).size.width * 6,
@@ -113,22 +110,26 @@ class VideoNewsPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Theme.of(context).cardTheme.color,
         body: SafeArea(
-            child: BlocBuilder<NewsBloc, NewsState>(builder: (context, state) {
-          if (state == null) {
-            return Center(child: Text('Null block'));
-          }
-          if (state is Failure) {
-            return Center(child: Text('Something went wrong'));
-          }
-          if (state is Loaded) {
-            if (state.items == null || state.items.isEmpty) {
-              return Text('No content avilable');
-            } else {
-              return _body(context, state.items, type: state.type);
-            }
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        })));
+          child: Text('Revoport need to incorporate here'),
+
+        //     child: BlocBuilder<NewsBloc, NewsState>(builder: (context, state) {
+        //   if (state == null) {
+        //     return Center(child: Text('Null block'));
+        //   }
+        //   if (state is Failure) {
+        //     return Center(child: Text('Something went wrong'));
+        //   }
+        //   if (state is Loaded) {
+        //     if (state.items == null || state.items.isEmpty) {
+        //       return Text('No content avilable');
+        //     } else {
+        //       return _body(context, state.items, type: state.type);
+        //     }
+        //   } else {
+        //     return Center(child: CircularProgressIndicator());
+        //   }
+        // })
+        
+        ));
   }
 }

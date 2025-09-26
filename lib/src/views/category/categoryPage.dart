@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_news_app/src/commonWidget/bloc/bloc.dart';
 import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
-import 'package:flutter_news_app/src/pages/homePage/bloc/bloc.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -18,8 +15,8 @@ class _CategoryPageState extends State<CategoryPage> {
   Widget _categoryCard(String text, String type, String imgPath) {
     return InkWell(
         onTap: () {
-          BlocProvider.of<NewsBloc>(context).add(Fetch(type: type));
-          BlocProvider.of<NavigationBloc>(context).add(Navigate(pageIndex: 0));
+          // BlocProvider.of<NewsBloc>(context).add(Fetch(type: type));
+          // BlocProvider.of<NavigationBloc>(context).add(Navigate(pageIndex: 0));
 
           widget.controller!.animateTo(0,
               duration: Duration(milliseconds: 300), curve: Curves.linear);
