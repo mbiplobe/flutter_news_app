@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_news_app/src/bloc/simple_bloc_delegate.dart';
 import 'package:flutter_news_app/src/commonWidget/bloc/bloc.dart';
 import 'package:flutter_news_app/src/core/config/routes.dart';
@@ -10,8 +11,9 @@ import 'src/pages/homePage/bloc/bloc.dart';
 import 'src/pages/newsDetail/bloc/bloc.dart';
 import 'src/resources/repository.dart';
 
-void main() {
-  BlocObserver observer = SimpleBlocObserver();
+Future<void> main() async {
+  //BlocObserver observer = SimpleBlocObserver();
+   await dotenv.load(fileName: ".env");
   runApp(MyApp());
 }
 
