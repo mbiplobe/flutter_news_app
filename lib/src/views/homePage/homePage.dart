@@ -96,6 +96,7 @@ class HomePage extends ConsumerWidget {
         statusBarColor: Theme.of(context).colorScheme.surface,)); // need to know in future
     
      final newsViewModel = ref.watch(newViewModelProvider);
+     
     
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,

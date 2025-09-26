@@ -6,7 +6,7 @@ import 'package:flutter_news_app/src/theme/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
-   await dotenv.load(fileName: ".env");
+   await dotenv.load(fileName: "assets/env/secure_data.env");
   runApp(
     ProviderScope(   
       child: MyApp(),
