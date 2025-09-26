@@ -5,7 +5,6 @@ import 'package:flutter_news_app/src/theme/bloc/bloc.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({required Key key}) : super(key: key);
 
   Widget _headerWidget(BuildContext context) {
     return Container(

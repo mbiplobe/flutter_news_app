@@ -7,8 +7,6 @@ import 'homePage/homePage.dart';
 import 'profile/profilePage.dart';
 
 class NewsApp extends StatefulWidget {
-  NewsApp({required Key key}) : super(key: key);
-
   @override
   _NewsAppState createState() => _NewsAppState();
 }
@@ -27,7 +25,7 @@ class _NewsAppState extends State<NewsApp> {
           CategoryPage(
             controller: _controller, key: null,
           ),
-          ProfilePage(key: Key('profilePage')),
+          ProfilePage(),
         ],
       ),
     );

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_app/src/bloc/simple_bloc_delegate.dart';
 import 'package:flutter_news_app/src/commonWidget/bloc/bloc.dart';
+import 'package:flutter_news_app/src/core/config/routes.dart';
 import 'package:flutter_news_app/src/theme/bloc/theme_bloc.dart';
 import 'package:flutter_news_app/src/theme/bloc/theme_state.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
-import 'src/helpers/routes.dart';
 import 'src/pages/homePage/bloc/bloc.dart';
 import 'src/pages/newsDetail/bloc/bloc.dart';
 import 'src/resources/repository.dart';
@@ -40,11 +40,11 @@ class MyApp extends StatelessWidget {
           }
           return Builder(
             builder: (context) {
-              return MaterialApp(
+              return MaterialApp.router(
                 title: 'Flutter Demo',
                 theme: apptheme,
                 debugShowCheckedModeBanner: false,
-                routes: Routes.getRoute(),
+                routerConfig: router,
               );
             },
           );
