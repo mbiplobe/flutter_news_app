@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
+import 'package:flutter_news_app/src/core/config/routes.dart';
 import 'package:flutter_news_app/src/models/article_model.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
 import 'package:flutter_news_app/src/view_models/new_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'widget/newsCard.dart';
 
 class HomePage extends ConsumerWidget {
@@ -13,9 +15,7 @@ class HomePage extends ConsumerWidget {
       builder: (context) {
         return InkWell(
             onTap: () {
-              // final detailBloc = BlocProvider.of<DetailBloc>(context);
-              // detailBloc.add(SelectNewsForDetail(article: article));
-              // Navigator.pushNamed(context, '/detail');
+              context.push(AppRoutes.NewsDetailPageRoute, extra: article);
             },
             child: Stack(
               alignment: Alignment.bottomCenter,
@@ -45,8 +45,7 @@ class HomePage extends ConsumerWidget {
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).colorScheme.onSurface)),
                       Text(
-                        '',
-                        //article.getTime(),
+                        article.getTime(),
                         style: AppTheme.subTitleStyle.copyWith(
                             color: Theme.of(context).colorScheme.onSurface),
                       )
@@ -94,7 +93,7 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         systemNavigationBarColor: Theme.of(context).colorScheme.surface,
-        statusBarColor: Theme.of(context).colorScheme.surface,)); // need to know in future
+        statusBarColor: Theme.of(context).colorScheme.surface,)); 
     
      final newsViewModel = ref.watch(newViewModelProvider);
      
@@ -113,25 +112,6 @@ class HomePage extends ConsumerWidget {
           error: (error, stack) => Center(child: Text('Something went wrong')),
           loading: () => Center(child: CircularProgressIndicator()),
         ),
-        // child: BlocBuilder<NewsBloc, NewsState>(
-        //   builder: (context, state) {
-        //     if (state == null) {
-        //       return Center(child: Text('Null block'));
-        //     }
-        //     if (state is Failure) {
-        //       return Center(child: Text('Something went wrong'));
-        //     }
-        //     if (state is Loaded) {
-        //       if (state.items == null || state.items.isEmpty) {
-        //         return Text('No content avilable');
-        //       } else {
-        //         return _body(context, state.items, type: state.type);
-        //       }
-        //     } else {
-        //       return Center(child: CircularProgressIndicator());
-        //     }
-        //   },
-        // ),
       ),
     );
   }

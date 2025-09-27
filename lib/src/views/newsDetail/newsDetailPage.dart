@@ -4,6 +4,10 @@ import 'package:flutter_news_app/src/models/article_model.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
 
 class NewsDetailPage extends StatelessWidget {
+  final Article article;
+
+  const NewsDetailPage({super.key, required this.article});
+
   Widget _headerNews(BuildContext context, Article article) {
     return Stack(
       alignment: Alignment.topCenter,
@@ -95,7 +99,12 @@ class NewsDetailPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
-          child: Text('Need to incorporate riverpod here'),
+          child: _body(
+                  context,
+                  article,
+                ),
+          //child: Text('Need to incorporate riverpod here'),
+          
           
         //   BlocBuilder<DetailBloc, DetailState>(
         //   builder: (context, state) {

@@ -1,4 +1,5 @@
 import 'package:flutter_news_app/src/models/source_model.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'article_model.g.dart';
@@ -32,7 +33,8 @@ class Article {
 
 String getTime()
 {
-  return '27-Sep-2025';
+  final now = DateTime.now();
+  return DateFormat('d MMM yyyy').format(now); 
 }
 
 
