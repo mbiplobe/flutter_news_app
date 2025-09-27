@@ -45,15 +45,3 @@ class AppRoutes {
   static const CategoryPageRoute = "/CategoryPage";
   static const ProfilePage = "/ProfilePage";
 }
-
-// class Routes{
-//   static Map<String,WidgetBuilder> getRoute(){
-//     return  <String, WidgetBuilder>{
-//           '/': (_) => NewsApp(key: Key('News App'),),
-//           '/home': (_) => HomePage(),
-//           '/detail': (_) => NewsDetailPage(),
-//           '/category': (_) => CategoryPage(),
-//           '/profile': (_) => ProfilePage(key: Key('Profile'),),
-//         };
-//   }
-// }

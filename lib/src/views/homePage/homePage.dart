@@ -82,7 +82,7 @@ class HomePage extends ConsumerWidget {
             delegate: SliverChildBuilderDelegate(
                 (context, index) => NewsCard(
                       artical: list[index],
-                      type: type.toUpperCase(), key: null,
+                      type: type.toUpperCase()
                     ),
                 childCount: list.length))
       ],
@@ -106,7 +106,7 @@ class HomePage extends ConsumerWidget {
             if (data == null || data.isEmpty) {
               return Text('No content avilable');
             } else {
-              return _body(context, data, type: 'general');
+              return _body(context, data, type: 'More...');
             }
           },
           error: (error, stack) => Center(child: Text('Something went wrong')),

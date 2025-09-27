@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
+import 'package:flutter_news_app/src/core/config/routes.dart';
 import 'package:flutter_news_app/src/models/article_model.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
+import 'package:go_router/go_router.dart';
 
 class NewsCard extends StatelessWidget {
-  final Article artical;
+  final Article? artical;
   final bool isVideoNews;
-  final String type;
-  const NewsCard(
-      {required key,required this.artical, this.isVideoNews = false, this.type = ''})
+  final String? type;
+  
+  const NewsCard({Key? key, this.artical, this.isVideoNews = false, this.type})
       : super(key: key);
+
   Widget _playWidget(BuildContext context) {
     return SizedBox(
       height: 20,
@@ -35,6 +38,7 @@ class NewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        context.push(AppRoutes.NewsDetailPageRoute, extra: artical);
         // BlocProvider.of<DetailBloc>(context)
         //     .add(SelectNewsForDetail(article: artical));
         // Navigator.pushNamed(context, '/detail');
@@ -55,10 +59,10 @@ class NewsCard extends StatelessWidget {
                   children: <Widget>[
                     Container(
                         color: Theme.of(context).primaryColor,
-                        child: artical.urlToImage == null ||
-                                artical.urlToImage!.isEmpty
+                        child: artical?.urlToImage == null ||
+                                artical!.urlToImage!.isEmpty
                             ? Container()
-                            : customImage(artical.urlToImage??'',
+                            : customImage(artical!.urlToImage??'',
                                 fit: BoxFit.cover)),
                     isVideoNews ? _playWidget(context) : Container()
                   ],
@@ -74,7 +78,7 @@ class NewsCard extends StatelessWidget {
                 Container(
                   height: 52,
                   child: Text(
-                    artical.title??'',
+                    artical!.title??'',
                     style: Theme.of(context).textTheme.bodyLarge,
                     overflow: TextOverflow.fade,
                   ),
