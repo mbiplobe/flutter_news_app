@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
-import 'package:flutter_news_app/src/models/newsResponseModel.dart';
+import 'package:flutter_news_app/src/models/article_model.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
 import 'package:flutter_news_app/src/view_models/new_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -45,7 +45,8 @@ class HomePage extends ConsumerWidget {
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).colorScheme.onSurface)),
                       Text(
-                        article.getTime(),
+                        '',
+                        //article.getTime(),
                         style: AppTheme.subTitleStyle.copyWith(
                             color: Theme.of(context).colorScheme.onSurface),
                       )

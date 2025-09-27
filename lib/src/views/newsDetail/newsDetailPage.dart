@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
-import 'package:flutter_news_app/src/models/newsResponseModel.dart';
+import 'package:flutter_news_app/src/models/article_model.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
 
 class NewsDetailPage extends StatelessWidget {

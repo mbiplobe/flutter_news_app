@@ -1,5 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_news_app/src/models/newsResponseModel.dart';
+import 'package:flutter_news_app/src/models/article_model.dart';
+import 'package:flutter_news_app/src/models/news_response_model.dart';
 import 'package:http/http.dart';
 
 class NewsApiProvider {
@@ -15,7 +16,7 @@ class NewsApiProvider {
     // print(response.body.toString());
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON
-      return NewsApiResonse.fromRawJson(response.body).articles;
+      return NewsApiResonse.fromJson(response.body as Map<String, dynamic>).articles;
     } else {
       // If that call was not successful, throw an error.
       throw Exception('Failed to load post');

@@ -1,5 +1,5 @@
 import 'package:flutter_news_app/src/data/remote/news_api_service.dart';
-import 'package:flutter_news_app/src/models/newsResponseModel.dart';
+import 'package:flutter_news_app/src/models/article_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NewRespositoryImp implements NewsRepository {

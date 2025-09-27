@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_news_app/src/models/newsResponseModel.dart';
+import 'package:flutter_news_app/src/models/article_model.dart';
+import 'package:flutter_news_app/src/models/news_response_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,11 +14,11 @@ class NewsApiService {
   Future<List<Article>?> fetchAllNews({String category = ''}) async {
     try {
       final url = Uri.parse(
-        "${_baseURL}${_topHeadLine}?country=in&apiKey=$_apiKey&category=$category",
+        "${_baseURL}${_topHeadLine}?country=us&apiKey=$_apiKey&category=$category",
       );
       final response = await http.get(url);
       if (response.statusCode == 200) {
-        return NewsApiResonse.fromRawJson(response.body).articles;
+        return NewsApiResonse.fromJson(jsonDecode(response.body)).articles;
       } else {
         throw Exception('Failed to load post');
         // return null;
