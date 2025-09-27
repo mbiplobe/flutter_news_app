@@ -10,7 +10,13 @@ import 'package:go_router/go_router.dart';
 final GoRouter router = GoRouter(
   routes: [
     GoRoute(path: AppRoutes.NewsRoute, builder: (context, state) => NewsApp()),
-    GoRoute(path: AppRoutes.homeRoute, builder: (context, state) => HomePage()),
+    GoRoute(path: AppRoutes.homeRoute, 
+    builder: (context, state) {
+      final type = state.extra as String?;
+      return HomePage(type: type);
+    }
+    
+    ),
     GoRoute(
       path: AppRoutes.ProfilePage,
       builder: (context, state) => ProfilePage(),

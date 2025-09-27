@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
+import 'package:flutter_news_app/src/core/config/routes.dart';
 import 'package:flutter_news_app/src/theme/theme.dart';
+import 'package:go_router/go_router.dart';
 
 class CategoryPage extends StatefulWidget {
   final PageController? controller;
@@ -15,11 +17,7 @@ class _CategoryPageState extends State<CategoryPage> {
   Widget _categoryCard(String text, String type, String imgPath) {
     return InkWell(
         onTap: () {
-          // BlocProvider.of<NewsBloc>(context).add(Fetch(type: type));
-          // BlocProvider.of<NavigationBloc>(context).add(Navigate(pageIndex: 0));
-
-          widget.controller!.animateTo(0,
-              duration: Duration(milliseconds: 300), curve: Curves.linear);
+          context.push(AppRoutes.homeRoute, extra: type);
         },
         child: Stack(
           alignment: Alignment.center,

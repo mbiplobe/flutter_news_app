@@ -8,8 +8,8 @@ class NewsUsecases
 
   NewsUsecases(this.newsRepository);
 
-  Future<List<Article>?> fetchAllNews({String category = ''}) {
-    return newsRepository.fetchAllNews(category: category);
+  Future<List<Article>?> fetchAllNews(String? category) {
+    return newsRepository.fetchAllNews(category);
   }
 
 

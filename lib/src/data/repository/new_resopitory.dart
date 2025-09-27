@@ -7,13 +7,13 @@ class NewRespositoryImp implements NewsRepository {
   NewRespositoryImp(this.apiService);
   
   @override
-  Future<List<Article>?> fetchAllNews({String category = ''}) {
-    return apiService.fetchAllNews(category: category);
+  Future<List<Article>?> fetchAllNews(String? category ) {
+    return apiService.fetchAllNews(category);
   }
 }
 
 abstract class NewsRepository {
-  Future<List<Article>?> fetchAllNews({String category = ''});
+  Future<List<Article>?> fetchAllNews(String? category);
 }
 
 final newsRepositoryProvider = Provider<NewsRepository>((ref) {

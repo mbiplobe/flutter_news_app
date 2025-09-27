@@ -10,6 +10,9 @@ import 'package:go_router/go_router.dart';
 import 'widget/newsCard.dart';
 
 class HomePage extends ConsumerWidget {
+  String? type;
+  HomePage({super.key, this.type});
+
   Widget _headerNews(Article article) {
     return Builder(
       builder: (context) {
@@ -95,7 +98,10 @@ class HomePage extends ConsumerWidget {
         systemNavigationBarColor: Theme.of(context).colorScheme.surface,
         statusBarColor: Theme.of(context).colorScheme.surface,)); 
     
-     final newsViewModel = ref.watch(newViewModelProvider);
+
+final newsViewModel=  ref.watch(newsViewModelProvider(type));
+     
+  
      
     
     return Scaffold(
