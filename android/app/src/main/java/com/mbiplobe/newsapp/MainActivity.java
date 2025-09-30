@@ -1,4 +1,4 @@
-package com.thealphamerc.flutter_news_app;
+package com.mbiplobe.newsapp;
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity;

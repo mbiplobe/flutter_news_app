@@ -1,6 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_news_app/src/models/article_model.dart';
-import 'package:flutter_news_app/src/models/news_response_model.dart';
+import 'package:news_app/src/models/article_model.dart';
+import 'package:news_app/src/models/news_response_model.dart';
 import 'package:http/http.dart';
 
 class NewsApiProvider {

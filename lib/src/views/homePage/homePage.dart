@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_news_app/src/commonWidget/customWidget.dart';
-import 'package:flutter_news_app/src/core/config/routes.dart';
-import 'package:flutter_news_app/src/models/article_model.dart';
-import 'package:flutter_news_app/src/theme/theme.dart';
-import 'package:flutter_news_app/src/view_models/new_view_model.dart';
+import 'package:news_app/src/commonWidget/customWidget.dart';
+import 'package:news_app/src/core/config/routes.dart';
+import 'package:news_app/src/models/article_model.dart';
+import 'package:news_app/src/theme/theme.dart';
+import 'package:news_app/src/view_models/new_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'widget/newsCard.dart';

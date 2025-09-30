@@ -1,5 +1,5 @@
 
-import 'package:flutter_news_app/src/models/article_model.dart';
+import 'package:news_app/src/models/article_model.dart';
 
 import 'newsApiProvider.dart';
 

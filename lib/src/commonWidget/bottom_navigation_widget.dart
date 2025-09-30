@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_app/src/core/widget_utils.dart';
-import 'package:flutter_news_app/src/view_models/bottom_navigation_view_model.dart';
+import 'package:news_app/src/core/widget_utils.dart';
+import 'package:news_app/src/view_models/bottom_navigation_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BottomNavigationWidget extends ConsumerWidget {

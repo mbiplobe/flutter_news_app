@@ -1,4 +1,4 @@
-import 'package:flutter_news_app/src/models/source_model.dart';
+import 'package:news_app/src/models/source_model.dart';
 import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 

@@ -1,5 +1,5 @@
-import 'package:flutter_news_app/src/data/repository/new_resopitory.dart';
-import 'package:flutter_news_app/src/models/article_model.dart';
+import 'package:news_app/src/data/repository/new_resopitory.dart';
+import 'package:news_app/src/models/article_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NewsUsecases 
