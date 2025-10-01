@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:news_app/src/commonWidget/customWidget.dart';
+import 'package:news_app/src/core/config/routes.dart';
 import 'package:news_app/src/models/article_model.dart';
+import 'package:news_app/src/view_models/new_view_model.dart';
 import 'package:news_app/src/views/homePage/widget/newsCard.dart';
 import 'package:news_app/src/theme/theme.dart';
 
-class VideoNewsPage extends StatelessWidget {
+class VideoNewsPage extends ConsumerWidget {
+  String? type;
   Widget _headerNews(BuildContext context, Article article) {
     return InkWell(
         onTap: () {
           // BlocProvider.of<DetailBloc>(context)
           //     .add(SelectNewsForDetail(article: article));
           // Navigator.pushNamed(context, '/detail');
+          context.push(AppRoutes.NewsDetailPageRoute,extra: article);
         },
         child: Container(
             width: MediaQuery.of(context).size.width * 6,
@@ -70,14 +76,14 @@ class VideoNewsPage extends StatelessWidget {
   Widget _body(
     BuildContext context,
     List<Article> list, {
-    String type = 'general',
+    String? type ,
   }) {
     return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
           centerTitle: true,
           title: Text(
-            '${type.toUpperCase()} NEWS',
+            '${type!.toUpperCase()} NEWS',
             style: AppTheme.h2Style
                 .copyWith(color: Theme.of(context).primaryColor),
           ),
@@ -106,30 +112,22 @@ class VideoNewsPage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final newsViewModel=  ref.watch(newsViewModelProvider(type));
     return Scaffold(
         backgroundColor: Theme.of(context).cardTheme.color,
         body: SafeArea(
-          child: Text('Revoport need to incorporate here'),
-
-        //     child: BlocBuilder<NewsBloc, NewsState>(builder: (context, state) {
-        //   if (state == null) {
-        //     return Center(child: Text('Null block'));
-        //   }
-        //   if (state is Failure) {
-        //     return Center(child: Text('Something went wrong'));
-        //   }
-        //   if (state is Loaded) {
-        //     if (state.items == null || state.items.isEmpty) {
-        //       return Text('No content avilable');
-        //     } else {
-        //       return _body(context, state.items, type: state.type);
-        //     }
-        //   } else {
-        //     return Center(child: CircularProgressIndicator());
-        //   }
-        // })
-        
+           child: newsViewModel.when(
+          data: (data) {
+            if (data == null || data.isEmpty) {
+              return Text('No content avilable');
+            } else {
+              return _body(context, data, type: type ?? 'General');
+            }
+          },
+          error: (error, stack) => Center(child: Text('Something went wrong')),
+          loading: () => Center(child: CircularProgressIndicator()),
+        ),
         ));
   }
 }
